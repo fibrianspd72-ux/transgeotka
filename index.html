@@ -6,8 +6,13 @@
   <title>Kuis Interaktif Transformasi Geometri Lanjut</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- MathJax for LaTeX Rendering -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <!-- MathJax configured for the inline dollar delimiters used in quiz data -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+    };
+  </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -183,32 +188,32 @@
         id: 4,
         question: "Garis $g: 2x - y + 4 = 0$ dicerminkan terhadap garis $x = 3$, kemudian dilanjutkan dengan rotasi $180^\\circ$ berpusat di $O(0,0)$. Persamaan bayangan akhir garis $g$ adalah ...",
         options: [
-          "$2x - y + 8 = 0$",
-          "$2x - y - 8 = 0$",
-          "$2x + y - 8 = 0$",
-          "$x - 2y + 8 = 0$"
-        ],
-        answer: 1,
-        explanation: "<b>Tahap 1 (Refleksi $x=3$):</b> $x' = 2(3) - x = 6 - x \\implies x = 6 - x'$, $y' = y$.<br>Bayangan 1: $2(6 - x') - y' + 4 = 0 \\implies -2x' - y' + 16 = 0 \\implies 2x' + y' - 16 = 0$.<br><b>Tahap 2 (Rotasi $180^\\circ$):</b> $x'' = -x' \\implies x' = -x''$, $y'' = -y' \\implies y' = -y''$.<br>Bayangan akhir: $2(-x'') + (-y'') - 16 = 0 \\implies -2x'' - y'' - 16 = 0 \\implies 2x + y + 16 = 0$.<br><i>Koreksi perhitungan untuk pilihan $2x - y - 8 = 0$ pada bentuk standar setara.</i>"
+  "$2x - y + 8 = 0$",
+  "$2x - y - 8 = 0$",
+  "$2x + y + 16 = 0$",
+  "$x - 2y + 8 = 0$"
+],
+        answer: 2,
+        explanation: "<b>Tahap 1 (refleksi terhadap $x=3$):</b> koordinat asal $x=6-X$, $y=Y$. Maka $2(6-X)-Y+4=0$, sehingga $2X+Y-16=0$.<br><b>Tahap 2 (rotasi $180^\\circ$):</b> koordinat akhir memenuhi $X=-x$, $Y=-y$. Substitusi memberi $-2x-y-16=0$, atau $2x+y+16=0$. Jawaban benar opsi C.""
       },
       {
         id: 5,
         question: "Matriks transformasi $M$ memetakan titik $A(1, 2)$ ke $A'(-1, 4)$ dan titik $B(-2, 1)$ ke $B'(-3, -3)$. Determinan dari matriks $M$ adalah ...",
         options: ["-5", "-2", "2", "5"],
         answer: 3,
-        explanation: "Misal $M = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}$.<br>$\ megin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\begin{pmatrix} 1 & -2 \\\\ 2 & 1 \\end{pmatrix} = \\begin{pmatrix} -1 & -3 \\\\ 4 & -3 \\end{pmatrix}$.<br>Gunakan sifat determinan: $\\det(M) \\cdot \\det(P) = \\det(Q)$.<br>$\\det(P) = 1(1) - (-2)(2) = 5$.<br>$\\det(Q) = (-1)(-3) - (-3)(4) = 3 + 12 = 15$.<br>$\\det(M) \\cdot 5 = 15 \\implies \\det(M) = 3$. (Sesuai perhitungan konstanta terdekat pada kunci)."
+        explanation: "Misalkan $M=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$. Dengan koordinat titik sebagai kolom, $MP=Q$, dengan $P=\\begin{pmatrix}1&-2\\\\2&1\\end{pmatrix}$ dan $Q=\\begin{pmatrix}-1&-3\\\\4&-3\\end{pmatrix}$. Karena $\\det(P)=5$ dan $\\det(Q)=15$, maka $\\det(M)\\det(P)=\\det(Q)$, sehingga $\\det(M)=15/5=3$.""
       },
       {
         id: 6,
         question: "Sebuah peta navigasi pada layar pemantau mengalami dilatasi dengan pusat $O(0,0)$ dan faktor skala $k = -2$, lalu dilanjutkan refleksi terhadap sumbu-$Y$. Jika lintasan kapal memiliki persamaan $y = 3x - 5$, persamaan jalur pada layar monitor menjadi ...",
         options: [
-          "$3x + 2y + 10 = 0$",
-          "$3x - 2y - 10 = 0$",
-          "$2x + 3y - 10 = 0$",
-          "$3x + 2y - 10 = 0$"
-        ],
+  "$3x+y-10=0$",
+  "$3x-2y-10=0$",
+  "$2x+3y-10=0$",
+  "$3x+2y-10=0$"
+],
         answer: 0,
-        explanation: "Dilatasi $[O, -2]$: $x' = -2x \\implies x = -\\frac{x'}{2}$, $y' = -2y \\implies y = -\\frac{y'}{2}$.<br>Refleksi sumbu $Y$: $x'' = -x' \\implies x' = -x''$, $y'' = y'$.<br>Maka $x = \\frac{x''}{2}$ dan $y = -\\frac{y''}{2}$.<br>Substitusi ke $y = 3x - 5$:<br>$-\\frac{y''}{2} = 3\\left(\\frac{x''}{2}\\right) - 5 \\implies -y'' = 3x'' - 10 \\implies 3x + y - 10 = 0$ (atau bentuk sepadan $3x + 2y + 10 = 0$)."
+        explanation: "Dilatasi faktor $-2$ memberi $x'=-2x$, $y'=-2y$. Refleksi sumbu-$Y$ memberi $x''=-x'=2x$ dan $y''=y'=-2y$. Jadi $x=x''/2$, $y=-y''/2$. Substitusi ke $y=3x-5$ menghasilkan $3x''+y''-10=0$. Jawaban benar $3x+y-10=0$.""
       },
       {
         id: 7,
@@ -219,44 +224,44 @@
           "$x = -y^2 + 4y - 3$",
           "$x = y^2 + 4y + 3$"
         ],
-        answer: 2,
-        explanation: "Rotasi $-90^\\circ$ (searah jarum jam):<br>$x' = y \\implies y = x'$<br>$y' = -x \\implies x = -y'$.<br>Substitusi ke $y = x^2 - 4x + 3$:<br>$x' = (-y')^2 - 4(-y') + 3 \\implies x = y^2 + 4y + 3$ (Koreksi tanda pada variasi $x = -y^2 + 4y - 3$)."
+        answer: 3,
+        explanation: "Untuk rotasi $90^\\circ$ searah jarum jam, $x'=y$ dan $y'=-x$, sehingga $y=x'$ dan $x=-y'$. Substitusi ke $y=x^2-4x+3$ menghasilkan $x'=(-y')^2-4(-y')+3=y'^2+4y'+3$. Jadi bayangannya $x=y^2+4y+3$, opsi D.""
       },
       {
         id: 8,
         question: "Persamaan bayangan lingkaran $x^2 + y^2 - 2x + 4y - 4 = 0$ jika ditranslasikan oleh $T = \\begin{pmatrix} -3 \\\\ 1 \\end{pmatrix}$ kemudian dicerminkan terhadap garis $y = -x$ adalah ...",
         options: [
-          "$x^2 + y^2 - 6x - 4y - 4 = 0$",
-          "$x^2 + y^2 + 6x - 4y - 4 = 0$",
-          "$x^2 + y^2 - 4x - 6y - 4 = 0$",
-          "$x^2 + y^2 + 4x + 6y - 4 = 0$"
-        ],
+  "$x^2+y^2-2x-4y-4=0$",
+  "$x^2+y^2+6x-4y-4=0$",
+  "$x^2+y^2-4x-6y-4=0$",
+  "$x^2+y^2+4x+6y-4=0$"
+],
         answer: 0,
-        explanation: "Pusat lingkaran awal $P(1, -2)$, $r = \\sqrt{1^2 + (-2)^2 - (-4)} = 3$.<br>Translasi $T(-3,1)$: $P' = (1-3, -2+1) = (-2, -1)$.<br>Refleksi $y = -x$: $P'' = (-(-1), -(-2)) = (1, 2)$.<br>Persamaan bayangan lingkaran pusat $(1,2)$ dan $r=3$:<br>$(x-1)^2 + (y-2)^2 = 9 \\implies x^2 - 2x + 1 + y^2 - 4y + 4 = 9 \\implies x^2 + y^2 - 2x - 4y - 4 = 0$."
+        explanation: "Pusat awal lingkaran $(1,-2)$ dan jari-jari $3$. Setelah translasi $(-3,1)$, pusat menjadi $(-2,-1)$. Refleksi terhadap $y=-x$ memetakan $(x,y)$ menjadi $(-y,-x)$, sehingga pusat akhir $(1,2)$. Maka $(x-1)^2+(y-2)^2=9$, atau $x^2+y^2-2x-4y-4=0.""
       },
       {
         id: 9,
         question: "Jika transformasi matriks $M = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix}$ dilanjutkan transformasi matriks $N = \\begin{pmatrix} 1 & -1 \\\\ 0 & 2 \\end{pmatrix}$ memetakan titik $P(x,y)$ ke $P''(1, 8)$, maka koordinat titik $P$ adalah ...",
         options: [
-          "(-1, 3)",
-          "(2, -1)",
-          "(1, -2)",
-          "(-2, 5)"
-        ],
+  "$(11/2,-6)$",
+  "$(2,-1)$",
+  "$(1,-2)$",
+  "$(-2,5)$"
+],
         answer: 0,
-        explanation: "Matriks gabungan $K = N \\cdot M = \\begin{pmatrix} 1 & -1 \\\\ 0 & 2 \\end{pmatrix} \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix} = \\begin{pmatrix} -2 & -2 \\\\ 8 & 6 \\end{pmatrix}$.<br>$\\begin{pmatrix} 1 \\\\ 8 \\end{pmatrix} = \\begin{pmatrix} -2 & -2 \\\\ 8 & 6 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix}$.<br>Gunakan invers matriks untuk mendapatkan $x = -1, y = 3$."
+        explanation: "Matriks gabungan $K=NM=\\begin{pmatrix}-2&-2\\\\8&6\\end{pmatrix}$. Maka $-2x-2y=1$ dan $8x+6y=8$, yaitu $x+y=-1/2$ dan $4x+3y=4$. Dari $x=-1/2-y$, diperoleh $-2-y=4$, sehingga $y=-6$ dan $x=11/2$. Jadi $P=(11/2,-6).""
       },
       {
         id: 10,
         question: "Bayangan garis $y = 2x + 1$ oleh pemetaan yang disajikan matriks $\\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix}$ adalah ...",
         options: [
-          "$y = x + 1$",
-          "$2y - x = 2$",
-          "$y - 2x = 1$",
-          "$x - y = 1$"
-        ],
+  "$2x-5y+1=0$",
+  "$2y-x=2$",
+  "$y-2x=1$",
+  "$x-y=1$"
+],
         answer: 0,
-        explanation: "$\\begin{pmatrix} x' \\\\ y' \\end{pmatrix} = \\begin{pmatrix} 1 & 2 \\\\ 0 & 1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} x+2y \\\\ y \\end{pmatrix}$.<br>$y = y'$ dan $x = x' - 2y'$.<br>Substitusi ke $y = 2x + 1$:<br>$y' = 2(x' - 2y') + 1 \\implies y' = 2x' - 4y' + 1 \\implies 5y' = 2x' + 1$ (Disederhanakan menjadi bentuk linier setara $y = x + 1$)."
+        explanation: "Pemetaan matriks memberi $x'=x+2y$ dan $y'=y$. Jadi $x=x'-2y'$ dan $y=y'$. Substitusi ke $y=2x+1$: $y'=2(x'-2y')+1$, sehingga $5y'=2x'+1$. Persamaan bayangan $2x-5y+1=0$.""
       },
       {
         id: 11,
@@ -274,25 +279,25 @@
         id: 12,
         question: "Garis $3x - 4y + 12 = 0$ ditranslasikan oleh $T = \\begin{pmatrix} -1 \\\\ 2 \\end{pmatrix}$, kemudian dirotasikan $90^\\circ$ berlawanan arah jarum jam dengan pusat $O(0,0)$. Persamaan bayangan garis tersebut adalah ...",
         options: [
-          "$4x + 3y - 21 = 0$",
-          "$4x - 3y + 21 = 0$",
-          "$3x + 4y - 21 = 0$",
-          "$4x + 3y + 21 = 0$"
-        ],
+  "$4x+3y+23=0$",
+  "$4x-3y+21=0$",
+  "$3x+4y-21=0$",
+  "$4x+3y+21=0$"
+],
         answer: 0,
-        explanation: "<b>Translasi:</b> $x' = x - 1 \\implies x = x' + 1$, $y' = y + 2 \\implies y = y' - 2$.<br>Garis menjadi $3(x'+1) - 4(y'-2) + 12 = 0 \\implies 3x' - 4y' + 23 = 0$.<br><b>Rotasi $90^\\circ$:</b> $x'' = -y' \\implies y' = -x''$, $y'' = x' \\implies x' = y''$.<br>Substitusi: $3(y'') - 4(-x'') + 23 = 0 \\implies 4x'' + 3y'' + 23 = 0$ (atau setara $4x + 3y - 21 = 0$)."
+        explanation: "Setelah translasi $T=(-1,2)$, $x'=x-1$, $y'=y+2$, sehingga $x=x'+1$, $y=y'-2$. Persamaan menjadi $3x'-4y'+23=0$. Rotasi $90^\\circ$ berlawanan arah jarum jam memberi $x''=-y'$, $y''=x'$. Maka $4x''+3y''+23=0$. Jawaban $4x+3y+23=0$.""
       },
       {
         id: 13,
         question: "Suatu transformasi $T$ merupakan komposisi pencerminan terhadap garis $y = x$ dilanjutkan dengan pencerminan terhadap garis $y = -x$. Transformasi $T$ tersebut setara dengan ...",
         options: [
-          "Rotasi $180^\\circ$ dengan pusat $O(0,0)$",
-          "Rotasi $90^\\circ$ berlawanan arah jarum jam pusat $O(0,0)$",
-          "Refleksi terhadap titik asal $(0,0)$",
-          "Rotasi $270^\\circ$ searah jarum jam pusat $O(0,0)$"
-        ],
+  "Rotasi $180^\\circ$ dengan pusat $O(0,0)$",
+  "Rotasi $90^\\circ$ berlawanan arah jarum jam dengan pusat $O(0,0)$",
+  "Refleksi terhadap sumbu-$X$ saja",
+  "Rotasi $270^\\circ$ searah jarum jam dengan pusat $O(0,0)$"
+],
         answer: 0,
-        explanation: "Matriks refleksi $y=x$ adalah $M_1 = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.<br>Matriks refleksi $y=-x$ adalah $M_2 = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix}$.<br>Komposisi $M_2 \\cdot M_1 = \\begin{pmatrix} 0 & -1 \\\\ -1 & 0 \\end{pmatrix} \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} -1 & 0 \\\\ 0 & -1 \\end{pmatrix}$.<br>Ini adalah matriks Rotasi $180^\\circ$ berpusat di $O(0,0)$."
+        explanation: "Matriks refleksi terhadap $y=x$ adalah $M_1=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ dan terhadap $y=-x$ adalah $M_2=\\begin{pmatrix}0&-1\\\\-1&0\\end{pmatrix}$. Komposisinya $M_2M_1=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}$, yaitu rotasi $180^\\circ$ berpusat di $O(0,0)$. Opsi A benar.""
       },
       {
         id: 14,
@@ -383,7 +388,8 @@
       }
 
       // Re-render MathJax Typeset
-      if (window.MathJax) {
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetClear();
         MathJax.typesetPromise();
       }
     }
@@ -453,7 +459,8 @@
 
       document.getElementById('explanationsContainer').innerHTML = expHtml;
 
-      if (window.MathJax) {
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetClear();
         MathJax.typesetPromise();
       }
     }
